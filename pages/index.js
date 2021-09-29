@@ -12,9 +12,7 @@ export default function Home() {
         <title>Next 투두리스트</title>
       </Head>
       <Header />
-      <main className={styles.main}>
-        <h1>Welcome to Next</h1>
-      </main>
+      <Todo />
     </div>
   );
 }
