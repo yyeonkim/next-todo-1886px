@@ -18,8 +18,8 @@ export default function Todo() {
     }
   };
 
-  const deleteTodo = (value) => {
-    const todos = todoList.filter((todo) => todo.value !== value);
+  const deleteTodo = (index) => {
+    const todos = todoList.filter((todo, _index) => index !== _index);
     setTodoList(todos);
   };
 

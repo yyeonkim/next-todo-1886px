@@ -5,12 +5,6 @@ export default function Item({ todoList, deleteTodo }) {
   const todoLabel = useRef([]);
   const checkbox = useRef([]);
 
-  // todo 삭제하기
-  const handleDeleteClick = (index) => {
-    const value = todoLabel.current[index].innerText;
-    deleteTodo(value);
-  };
-
   const handleBoxClick = (index) => {
     const { style } = todoLabel.current[index]; // 클릭한 todo의 style
     const { checked } = checkbox.current[index];
@@ -35,10 +29,7 @@ export default function Item({ todoList, deleteTodo }) {
           >
             {todo.value}
           </label>
-          <IoCloseOutline
-            size="2rem"
-            onClick={() => handleDeleteClick(index)}
-          />
+          <IoCloseOutline size="2rem" onClick={() => deleteTodo(index)} />
         </div>
       ))}
     </div>
