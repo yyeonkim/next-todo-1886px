@@ -1,37 +1,44 @@
-import { useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 
-export default function Item({ todoList, deleteTodo }) {
-  const todoLabel = useRef([]);
-  const checkbox = useRef([]);
+import { Box } from "@chakra-ui/react";
 
-  const checkTodo = (index) => {
-    const { style } = todoLabel.current[index]; // 클릭한 todo의 style
-    const { checked } = checkbox.current[index];
-    // 체크하면 todo에 중간 줄 긋기 (toggle)
+export default function Item({ todoList, deleteTodo }) {
+  const checkTodo = (event) => {
+    const { style } = event.target.nextSibling;
+    const { checked } = event.target;
     style.textDecoration = checked ? "line-through" : null;
     style.color = checked ? "gray" : null;
   };
 
-  return (
-    <div>
-      {todoList.map((todo, index) => (
-        <p key={todo.id}>
-          <input
-            ref={(box) => (checkbox.current[index] = box)}
-            type="checkbox"
-            id={index}
-            onClick={() => checkTodo(index)}
-          />
-          <label
-            ref={(label) => (todoLabel.current[index] = label)}
-            htmlFor={index}
-          >
-            {todo.value}
-          </label>
-          <IoCloseOutline size="2rem" onClick={() => deleteTodo(index)} />
-        </p>
-      ))}
-    </div>
-  );
+  return todoList.map((todo, index) => (
+    <Box key={todo.id} style={styles.todoBox}>
+      <input
+        style={styles.checkbox}
+        type="checkbox"
+        id={index}
+        onClick={checkTodo}
+      />
+      <label style={styles.todoLabel} htmlFor={index}>
+        {todo.value}
+      </label>
+      <IoCloseOutline size="2rem" onClick={() => deleteTodo(index)} />
+    </Box>
+  ));
 }
+
+const styles = {
+  todoBox: {
+    display: "flex",
+    fontSize: "2rem",
+    alignItems: "center",
+  },
+
+  checkbox: {
+    margin: "0 2rem",
+    transform: "scale(1.5)",
+  },
+
+  todoLabel: {
+    marginRight: "2rem",
+  },
+};
