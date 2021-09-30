@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Form from "./Form";
 import Item from "./Item";
+import Form from "./Form";
 
 export default function Todo() {
   const [id, setId] = useState(0);
@@ -9,13 +9,11 @@ export default function Todo() {
 
   // 새로운 todo를 배열에 추가하고 todo List 업데이트
   const pushTodo = (value) => {
-    if (value) {
-      const todos = todoList;
-      const todo = { id, value };
-      setId((current) => current + 1);
-      todos.push(todo);
-      setTodoList(todos);
-    }
+    const todos = todoList;
+    const todo = { id, value };
+    setId((current) => current + 1);
+    todos.push(todo);
+    setTodoList(todos);
   };
 
   const deleteTodo = (index) => {

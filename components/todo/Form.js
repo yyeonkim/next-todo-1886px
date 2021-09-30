@@ -1,19 +1,34 @@
-import { useRef } from "react";
+import { useState } from "react";
 
-export default function Form({ pushTodo }) {
-  const todoInput = useRef();
+import { Input } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { FormControl } from "@chakra-ui/react";
 
-  const handleSubmit = (event) => {
+export default function TodoForm({ pushTodo }) {
+  const [todoValue, setValue] = useState("");
+
+  const submitTodo = (event) => {
     event.preventDefault();
-    let { value } = todoInput.current;
-    pushTodo(value); // todo 배열에 input 값 추가
-    todoInput.current.value = "";
+
+    if (todoValue) {
+      pushTodo(todoValue); // todo 배열에 input 값 추가
+      setValue("");
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input ref={todoInput} type="text" placeholder="할 일을 입력하세요" />
-      <button>추가</button>
+    <form onSubmit={submitTodo}>
+      <FormControl id="todo">
+        <Input
+          value={todoValue}
+          variant="flushed"
+          placeholder="할 일을 입력하세요"
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <Button colorScheme="blue" type="submit">
+          추가
+        </Button>
+      </FormControl>
     </form>
   );
 }
