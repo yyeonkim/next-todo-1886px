@@ -1,7 +1,9 @@
 import { useState } from "react";
 
-import Form from "./Form";
 import Item from "./Item";
+import Form from "./Form";
+
+import { Heading, Container } from "@chakra-ui/react";
 
 export default function Todo() {
   const [id, setId] = useState(0);
@@ -9,13 +11,11 @@ export default function Todo() {
 
   // 새로운 todo를 배열에 추가하고 todo List 업데이트
   const pushTodo = (value) => {
-    if (value) {
-      const todos = todoList;
-      const todo = { id, value };
-      setId((current) => current + 1);
-      todos.push(todo);
-      setTodoList(todos);
-    }
+    const todos = todoList;
+    const todo = { id, value };
+    setId((current) => current + 1);
+    todos.push(todo);
+    setTodoList(todos);
   };
 
   const deleteTodo = (index) => {
@@ -24,10 +24,10 @@ export default function Todo() {
   };
 
   return (
-    <main>
+    <Container maxW="container.lg">
       <Form pushTodo={pushTodo} />
-      <h2>할 일 목록 ✍</h2>
+      <Heading margin="2rem 1rem">할 일 목록 ✍</Heading>
       <Item todoList={todoList} deleteTodo={deleteTodo} />
-    </main>
+    </Container>
   );
 }

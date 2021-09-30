@@ -1,18 +1,18 @@
-import styles from "../styles/Home.module.css";
-
 import Head from "next/head";
+
+import { Container } from "@chakra-ui/layout";
 
 import Header from "../components/Header";
 import Todo from "../components/todo/Todo";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Container maxW="container.lg" centerContent>
       <Head>
-        <title>Next 투두리스트</title>
+        <title>Next Todo List</title>
       </Head>
       <Header />
       <Todo />
-    </div>
+    </Container>
   );
 }
