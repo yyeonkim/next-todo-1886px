@@ -45,12 +45,7 @@ export default function Form({ pushTodo }) {
           placeholder="할 일을 입력하세요"
           onChange={(e) => setValue(e.target.value)}
         />
-        <Button
-          fontSize="1.2rem"
-          padding="1.5rem 2rem"
-          colorScheme="blue"
-          type="submit"
-        >
+        <Button style={styles.addButton} colorScheme="blue" type="submit">
           추가
         </Button>
       </FormControl>
@@ -68,5 +63,10 @@ const styles = {
     width: "90%",
     marginRight: "1rem",
     fontSize: "1.6rem",
+  },
+
+  addButton: {
+    fontSize: "1.2rem",
+    padding: "1.5rem 2rem",
   },
 };
